@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:routemaster/routemaster.dart';
 
 class HomeScreen extends StatelessWidget {
-  final VoidCallback onMypagePressed;
-  final VoidCallback onSettingsPressed;
-
-  const HomeScreen(
-      {Key? key,
-      required this.onMypagePressed,
-      required this.onSettingsPressed})
-      : super(key: key);
+  const HomeScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +22,9 @@ class HomeScreen extends StatelessWidget {
                 backgroundColor: Colors.blue,
                 padding: EdgeInsets.all(12),
               ),
-              onPressed: onMypagePressed,
+              onPressed: () {
+                Routemaster.of(context).push('/mypage');
+              },
               child: const Text('マイページ', style: TextStyle(color: Colors.white)),
             ),
             const SizedBox(height: 20),
@@ -35,7 +33,9 @@ class HomeScreen extends StatelessWidget {
                 backgroundColor: Colors.blue,
                 padding: EdgeInsets.all(12),
               ),
-              onPressed: onSettingsPressed,
+              onPressed: () {
+                Routemaster.of(context).push('/settings');
+              },
               child: const Text('設定', style: TextStyle(color: Colors.white)),
             ),
           ],
