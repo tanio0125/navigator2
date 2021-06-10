@@ -138,7 +138,7 @@ class AppRouterDelegate extends RouterDelegate<AppRouteState>
         if (!route.didPop(result)) {
           return false;
         }
-        // TODO: 一番上にスタックしているやつだけフラグをおる必要あり
+        // TODO: 一番上にスタック順に戻る必要あり？
         isMypage = false;
         isSettings = false;
         isUnknown = false;
@@ -152,18 +152,10 @@ class AppRouterDelegate extends RouterDelegate<AppRouteState>
   //ParseRouteInformationで変換されたら呼び出される
   @override
   Future<void> setNewRoutePath(AppRouteState appRouteState) async {
-    if (appRouteState.isMypage) {
-      isMypage = true;
-      notifyListeners();
-    }
-    if (appRouteState.isSettings) {
-      isSettings = true;
-      notifyListeners();
-    }
-    if (appRouteState.isUnknown) {
-      isUnknown = true;
-      notifyListeners();
-    }
+    isMypage = appRouteState.isMypage;
+    isSettings = appRouteState.isSettings;
+    isUnknown = appRouteState.isUnknown;
+    notifyListeners();
   }
 }
 
